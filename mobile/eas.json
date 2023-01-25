@@ -1,0 +1,25 @@
+{
+  "cli": {
+    "version": ">= 3.4.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "staging": {
+      "extends": "production",
+      "gradleCommand": ":app:assembleRelease"
+    },
+    "production": {
+      "node": "18.13.0",
+      "autoIncrement": true
+    }
+  }
+}
