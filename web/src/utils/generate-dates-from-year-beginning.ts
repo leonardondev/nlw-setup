@@ -12,5 +12,7 @@ export function generateDatesFromYearBeginning() {
     compareDate = compareDate.add(1, "day");
   }
 
-  return dates;
+  const unshiftDays = dayjs().startOf("year").get("day");
+
+  return { summaryDates: dates, unshiftDays };
 }

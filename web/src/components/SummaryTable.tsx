@@ -2,7 +2,7 @@ import { generateDatesFromYearBeginning } from "../utils/generate-dates-from-yea
 import { HabitDay } from "./HabitDay";
 
 export function SummaryTable() {
-  const summaryDates = generateDatesFromYearBeginning();
+  const { summaryDates, unshiftDays } = generateDatesFromYearBeginning();
 
   const minimumSummaryDatesSize = 18 * 7;
   const amountOfDaysToFill = minimumSummaryDatesSize - summaryDates.length;
@@ -21,8 +21,21 @@ export function SummaryTable() {
       </div>
 
       <div className="grid grid-rows-7 grid-flow-col gap-3">
+        {Array(unshiftDays)
+          .fill(null)
+          .map((_, i) => (
+            <div
+              key={i}
+              className="w-10 h-10 bg-zinc-900 border-2 border-zinc-800 rounded-lg opacity-40 cursor-not-allowed"
+            />
+          ))}
+
         {summaryDates.map((date) => (
-          <HabitDay key={date.toString()} />
+          <HabitDay
+            key={date.toString()}
+            completed={Math.round(Math.random() * 5)}
+            amount={5}
+          />
         ))}
         {amountOfDaysToFill > 0 &&
           Array(amountOfDaysToFill)
